@@ -17,7 +17,7 @@ COPY pcre-8.44.tar.gz /tmp/
 
 # Retrieve and unpack pcre, zlib, and openssl    
 RUN cd /tmp/									    && \
-    wget http://www.openssl.org/source/openssl-1.1.1g.tar.gz			    && \
+    wget -q http://www.openssl.org/source/openssl-1.1.1g.tar.gz			    && \
     tar -zxf openssl-1.1.1g.tar.gz					            && \
     cd openssl-1.1.1g								    && \
     ./Configure linux-x86_64 --prefix=/usr	                                    && \
@@ -32,7 +32,7 @@ RUN cd /tmp/                                                                    
     make install                                                                    
 
 RUN cd /tmp/                                                                        && \
-    wget http://zlib.net/zlib-1.2.11.tar.gz                                         && \
+    wget -q http://zlib.net/zlib-1.2.11.tar.gz                                         && \
     tar -zxf zlib-1.2.11.tar.gz                                                     && \
     cd zlib-1.2.11                                                                  && \
     ./configure                                                                     && \
@@ -40,14 +40,10 @@ RUN cd /tmp/                                                                    
     make install
 
 # Retrieve, verify and unpack Nginx source - key server pgp.mit.edu  
-RUN set -x                                                                      &&  \
-    cd /tmp                                                                     &&  \
-    gpg --keyserver pool.sks-keyservers.net --recv-keys                                         \
-        B0F4253373F8F6F510D42178520A9993A1C052F8                                &&  \
-    wget -q http://nginx.org/download/nginx-${VERSION}.tar.gz                   &&  \
-    wget -q http://nginx.org/download/nginx-${VERSION}.tar.gz.asc               &&  \
-    gpg --verify nginx-${VERSION}.tar.gz.asc                                    &&  \
-    tar -xf nginx-${VERSION}.tar.gz                                             &&  \
+RUN set -x									&&  \
+    cd /tmp/                                                                    &&  \
+    wget -q https://nginx.org/download/nginx-${VERSION}.tar.gz		        &&  \
+    tar xzf nginx-${VERSION}.tar.gz					        &&  \
     echo ${VERSION}                                           
 
 WORKDIR /tmp/nginx-${VERSION}
@@ -57,7 +53,7 @@ RUN ./configure                                                                 
         --with-ld-opt="-static"                                                     \
         --with-pcre="/tmp/pcre-8.44"                                                \
         --with-zlib="/tmp/zlib-1.2.11"                                              \
-        --with-http_ssl_module                                                  &&  \
+        --with-http_ssl_module                                                  &&  \   
 
     make install                                                                &&  \
     strip /usr/local/nginx/sbin/nginx
