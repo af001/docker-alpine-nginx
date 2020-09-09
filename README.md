@@ -1,5 +1,5 @@
 # docker-nginx-scratch
-Create new Nginx Server w/ OpenSSL included from Scratch</br>
+Create Nginx container w/ OpenSSL using Alpine and Scratch</br>
 Approx 4.5 MB in size
 
 ## Build
