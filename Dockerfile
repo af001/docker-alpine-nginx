@@ -41,7 +41,7 @@ RUN set -x                                                                  && \
         --with-http_geoip_module                                            \
         --with-http_ssl_module                                              && \   
     make                                                                    && \
-    make Install                                                            && \
+    make install                                                            && \
     strip /usr/local/nginx/sbin/nginx
 
 # Symlink access and error logs to /dev/stdout and /dev/stderr, in 
