@@ -37,9 +37,9 @@ RUN set -x                                                                  && \
         --with-pcre=/tmp/pcre-${PCRE_VERSION}                               \
         --with-zlib=/tmp/zlib-${ZLIB_VERSION}                               \
         --with-openssl=/tmp/openssl-${OSSL_VERSION}                         \
-	--with-http_realip_module                                               \
-	--with-http_geoip_module                                                \
-    --with-http_ssl_module                                                  && \   
+        --with-http_realip_module                                           \
+        --with-http_geoip_module                                            \
+        --with-http_ssl_module                                              && \   
     make                                                                    && \
     make Install                                                            && \
     strip /usr/local/nginx/sbin/nginx
