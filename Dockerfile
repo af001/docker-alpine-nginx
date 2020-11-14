@@ -17,7 +17,7 @@ RUN apk add --no-cache --virtual .build-deps                                \
         linux-headers                                                       \
         pcre-dev                                                            \
         wget                                                                \                                                                
-	    geoip-dev								    	  
+        geoip-dev								    	  
 
 # Download and unpack packages using wget and tar
 RUN wget -q https://www.openssl.org/source/openssl-$OSSL_VERSION.tar.gz     && \
