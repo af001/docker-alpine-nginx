@@ -3,9 +3,12 @@ Create Nginx container w/ OpenSSL using Alpine and Scratch</br>
 Approx 4.5 MB in size
 
 ## Build
+```bash
 docker image  build -t nginx-scratch .
+```
 
 ## Build with custom PCRE, OPENSSL, ZLIB, NGINX versions
+```bash
 docker image  \
        build  \
        --build-arg NGNX_VERSION=1.19.4  \
@@ -13,6 +16,7 @@ docker image  \
        --build-arg OSSL_VERSION=1.1.1h  \
        --build-arg ZLIB_VERSION=1.2.11  \
        -t nginx-scratch .
+```
 
 ## Run
 docker run -d -p 80:80 nginx-scratch
