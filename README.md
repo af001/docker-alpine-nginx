@@ -8,5 +8,8 @@ docker image  build -t nginx-scratch .
 ## Run
 docker run -d -p 80:80 nginx-scratch
 
+## Mount logs to host
+docker run -d -p 80:80 -v /tmp/logs/:/usr/local/nginx/logs/ nginx-scratch
+
 ## Mount custom files
 docker run -p 80:80 -v $(pwd)/nginx.conf:/usr/local/nginx/conf/nginx.conf -v $(pwd)/index.html:/usr/share/nginx/html/index.html nginx-scratch
